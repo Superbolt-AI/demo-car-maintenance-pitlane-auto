@@ -1,0 +1,29 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+  functions = "netlify/functions"
+[build.environment]
+  NODE_VERSION = "22"
+[functions]
+  node_bundler = "esbuild"
+[[redirects]]
+  from = "/api/workshop"
+  to = "/.netlify/functions/workshop"
+  status = 200
+[[redirects]]
+  from = "/api/quote"
+  to = "/.netlify/functions/quote"
+  status = 200
+[[redirects]]
+  from = "/api/appointments"
+  to = "/.netlify/functions/appointments"
+  status = 200
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
